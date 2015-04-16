@@ -9,14 +9,13 @@ package com.yakovfain;
  *
  * @author Anastasiy
  */
-public class JavaLesson3 {
-
+public class Tax {
+    double grossIncome;
+    String state;
+    int dependents;
     
-    /**
-     * @param args the command line arguments
-     */
-    /* public static void main(String[] args) {
+    public double calcTax(){
         
-    }*/
-    
+        return 234.55;
+    }
 }

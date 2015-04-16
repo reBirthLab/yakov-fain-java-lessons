@@ -9,14 +9,9 @@ package com.yakovfain;
  *
  * @author Anastasiy
  */
-public class JavaLesson3 {
-
-    
-    /**
-     * @param args the command line arguments
-     */
-    /* public static void main(String[] args) {
-        
-    }*/
-    
+public class NJTax extends Tax {
+    double adjustForStudents (double stateTax) {
+        double adjustedTax = stateTax - 500;
+        return adjustedTax;
+    }
 }
