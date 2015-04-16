@@ -21,26 +21,15 @@ public class TestTax {
         state = "NJ";
         
         Tax t = new Tax(grossIncome, state, dependants);
-        
         double yourTax = t.calcTax(); // calculating tax
-        
-        // Printing the result
         System.out.println("Your tax is " + yourTax);
-        
-        // Convert taxes in Euros
-        t.convertInEuros(yourTax);
+        Tax.convertInEuros(yourTax);
         
         //Example #2
         Tax t2 = new Tax(65000, "TX", 4);
-        
         double hisTax = t2.calcTax();
-            
-        // Printing the result
         System.out.println("His tax is " + hisTax);
-        
-        // Convert taxes in Euros
-        t2.convertInEuros(hisTax);
-        
-        
+        Tax.convertInEuros(hisTax);
+                
     }
 }
