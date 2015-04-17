@@ -10,7 +10,7 @@ package com.yakovfain.lesson6;
  * @author Anastasiy
  */
 public interface Payable {
-    final int INCREASE_CAP = 20;
+    final int INCREASE_CAP = 25;
     
     boolean increasePay(int percent);
 }

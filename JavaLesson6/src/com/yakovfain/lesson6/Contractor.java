@@ -21,7 +21,7 @@ public class Contractor extends Person implements Payable {
             return true;
         } else {
             System.out.println("Sorry, can’t increase hourly rate"
-                    + "by more than 20%. " + getName());
+                    + "by more than " + INCREASE_CAP + "%. " + getName());
             return false;
         }
     }
