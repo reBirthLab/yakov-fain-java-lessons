@@ -22,13 +22,13 @@ public class TestTax {
         
         Tax t = new Tax(grossIncome, state, dependants);
         double yourTax = t.calcTax(); // calculating tax
-        System.out.println("Your tax is " + yourTax);
+        System.out.println("Your tax is $" + yourTax);
         Tax.convertInEuros(yourTax);
         
         //Example #2
         Tax t2 = new Tax(65000, "TX", 4);
         double hisTax = t2.calcTax();
-        System.out.println("His tax is " + hisTax);
+        System.out.println("His tax is $" + hisTax);
         Tax.convertInEuros(hisTax);
                 
     }
