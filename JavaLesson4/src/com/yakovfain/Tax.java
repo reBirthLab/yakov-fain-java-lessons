@@ -33,5 +33,5 @@ public class Tax {
     // USD to EUR Converter
     static void convertInEuros (double tax){
         System.out.println("$" + tax + " (" + tax * 0.75 + " Euros)");
-    };
+    }
 }
