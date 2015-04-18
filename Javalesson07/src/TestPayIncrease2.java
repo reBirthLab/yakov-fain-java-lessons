@@ -11,7 +11,7 @@ import com.yakovfain.lesson7.*;
  *
  * @author Anastasiy
  */
-public class TestPayIncrease {
+public class TestPayIncrease2 {
     public static void main(String[] args) {
         
         Person workers[] = new Person[3];
