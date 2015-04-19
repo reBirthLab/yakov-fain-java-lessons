@@ -1,6 +1,5 @@
 
-import com.yakovfain.lesson7.*;
-
+import com.yakovfain.lesson7.tryit.*;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -12,20 +11,15 @@ import com.yakovfain.lesson7.*;
  *
  * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
-public class TestPayIncrease2 {
-
-    /**
-     * @param args the command line arguments
-     */
+public class TestPayIncreaseInterface {
     public static void main(String[] args) {
-        Person workers[] = new Person[3];
+        Payable workers[] = new Payable[3];
         workers[0] = new Employee("John");
         workers[1] = new Contractor("Mary");
         workers[2] = new Employee("Steve");
         
-        for (Person p: workers){
-            p.promote(30);
+        for (Payable p: workers){
+            ((Payable)p).increasePay(30);
         }
     }
-    
 }
