@@ -6,7 +6,7 @@
 package com.yakovfain.lesson8;
 
 import javax.swing.*;
-import java.awt.FlowLayout;
+import java.awt.*;
 
 /**
  *
@@ -18,8 +18,8 @@ public class SimpleCalculator {
         JPanel windowContent = new JPanel();
         
         // Set a layout manager for this panel
-        FlowLayout f1 =  new FlowLayout();
-        windowContent.setLayout(f1);
+        GridLayout gr = new GridLayout(4,2,5,5);
+        windowContent.setLayout(gr);
         
         // Create controls in memory
         JLabel label1 = new JLabel("Number 1:");
@@ -46,7 +46,8 @@ public class SimpleCalculator {
         frame.setContentPane(windowContent);
         
         // set the size and make the window visible
-        frame.setSize(400,100);
+        frame.setSize(400,200);
         frame.setVisible(true);
+        frame.setLocationRelativeTo(null);
     }
 }
