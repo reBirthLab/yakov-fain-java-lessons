@@ -17,25 +17,24 @@ public class Calculator {
     // Declare all calculator's components.
 
     private final JPanel windowContent;
-    private JTextField displayField;
-    private JButton button0;
-    private JButton button1;
-    private JButton button2;
-    private JButton button3;
-    private JButton button4;
-    private JButton button5;
-    private JButton button6;
-    private JButton button7;
-    private JButton button8;
-    private JButton button9;
-    private JButton buttonPoint;
+    private final JTextField displayField;
+    private final JButton button0;
+    private final JButton button1;
+    private final JButton button2;
+    private final JButton button3;
+    private final JButton button4;
+    private final JButton button5;
+    private final JButton button6;
+    private final JButton button7;
+    private final JButton button8;
+    private final JButton button9;
+    private final JButton buttonPoint;
     private final JButton buttonEqual;
     private final JButton buttonAdd;
-    private JButton buttonSub;
-    private JButton buttonMult;
-    private JButton buttonDiv;
-    private JPanel p1;
-    private JPanel p2;
+    private final JButton buttonSub;
+    private final JButton buttonMult;
+    private final JButton buttonDiv;
+    private final JPanel p1;
 
     // Methods for setting and getting Display Value
     public void setDisplayValue(String val) {
