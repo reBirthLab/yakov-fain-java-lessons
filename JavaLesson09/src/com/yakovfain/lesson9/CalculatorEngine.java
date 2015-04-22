@@ -41,36 +41,36 @@ public class CalculatorEngine implements ActionListener {
         String dispFieldText = parent.getDisplayValue();
 
         if (clickedButtonLabel.equals(ADDITION)) {
-            this.value += Double.parseDouble(parent.getDisplayValue());
+            value += Double.parseDouble(parent.getDisplayValue());
             lastOperation = ADDITION;
             lastValue = true;
             pointPressed = false;
 
         } else if (clickedButtonLabel.equals(SUBSTRUCTION)) {
-            if (this.value != 0) {
-                this.value -= Double.parseDouble(parent.getDisplayValue());
+            if (value != 0) {
+                value -= Double.parseDouble(parent.getDisplayValue());
             } else {
-                this.value = Double.parseDouble(parent.getDisplayValue());
+                value = Double.parseDouble(parent.getDisplayValue());
             }
             lastOperation = SUBSTRUCTION;
             lastValue = true;
             pointPressed = false;
 
         } else if (clickedButtonLabel.equals(MULTIPLICATION)) {
-            if (this.value != 0) {
-                this.value *= Double.parseDouble(parent.getDisplayValue());
+            if (value != 0) {
+                value *= Double.parseDouble(parent.getDisplayValue());
             } else {
-                this.value = Double.parseDouble(parent.getDisplayValue());
+                value = Double.parseDouble(parent.getDisplayValue());
             }
             lastOperation = MULTIPLICATION;
             lastValue = true;
             pointPressed = false;
 
         } else if (clickedButtonLabel.equals(DIVISION)) {
-            if (this.value != 0) {
-                this.value /= Double.parseDouble(parent.getDisplayValue());
+            if (value != 0) {
+                value /= Double.parseDouble(parent.getDisplayValue());
             } else {
-                this.value = Double.parseDouble(parent.getDisplayValue());
+                value = Double.parseDouble(parent.getDisplayValue());
             }
             lastOperation = DIVISION;
             lastValue = true;
