@@ -57,7 +57,6 @@ public class CalculatorEngine implements ActionListener {
             pointPressed = false;
 
         } else if (clickedButtonLabel.equals(MULTIPLICATION)) {
-            System.out.println("@@@");
             if (this.value != 0) {
                 this.value *= Double.parseDouble(parent.getDisplayValue());
             } else {

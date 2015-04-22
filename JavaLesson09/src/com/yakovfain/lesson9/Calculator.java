@@ -127,6 +127,7 @@ public class Calculator {
         buttonEqual.addActionListener(calcEngine);
         buttonAdd.addActionListener(calcEngine);
         buttonSub.addActionListener(calcEngine);
+        buttonMult.addActionListener(calcEngine);
         buttonDiv.addActionListener(calcEngine);
 
         // Create the frame and set its content pane
