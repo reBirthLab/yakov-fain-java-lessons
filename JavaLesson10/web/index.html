@@ -14,11 +14,25 @@ and open the template in the editor.
     <body>
         <div id="applet">
             <h1>My Calculator Applet</h1>
-            <applet archive="applets/JavaLesson10Applet.jar" 
+            <script src="http://java.com/js/deployJava.js"></script>
+            <script>
+                var attributes = {
+                    code: "com.yakovfain.lesson10.Calculator",
+                    archive: "applets/JavaLesson10Applet.jar",
+                    width: 300,
+                    height: 200
+                };
+                var parameters = {jnlp_href: "launch.jnlp"};<!-- Applet Parameters -->
+                var version = "1.8";<!-- Required Java Version -->
+                deployJava.runApplet(attributes, parameters, version);
+            </script>
+            
+            <!--<applet archive="applets/JavaLesson10Applet.jar" 
                     code="com.yakovfain.lesson10.Calculator.class" 
                     width="300" 
                 height="200">   
             </applet>
+            -->
         </div>
     </body>
 </html>

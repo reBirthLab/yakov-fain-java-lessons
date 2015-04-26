@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp href="launch.jnlp" spec="1.0+">
+    <information>
+        <title>Simple Calculator Applet</title>
+        <vendor>Anastasiy Tovstik</vendor>
+        <homepage href=""/>
+        <description>This is simple Calculator applet made for Yakov Fain's lesson</description>
+        <description kind="short">Simple Calculator Applet</description>
+    </information>
+    <update check="always"/>
+    <security>
+<all-permissions/>
+</security>
+    <resources>
+        <j2se java-vm-args="-Djava.security.policy=applet.policy" version="1.8+"/>
+        <jar href="applets/JavaLesson10Applet.jar" main="true"/>
+    </resources>
+    <applet-desc height="200" main-class="com.yakovfain.lesson10.Calculator" name="Simple Calculator Applet" width="300">
+    </applet-desc>
+</jnlp>
