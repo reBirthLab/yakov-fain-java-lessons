@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jnlp codebase="" href="TicTacToeApplet.jnlp" spec="1.0+">
+    <information>
+        <title>Tic-Tac-Toe Game</title>
+        <vendor>Anastasiy Tovstik</vendor>
+        <homepage href=""/>
+        <description>Tic-Tac-Toe Game Applet made for Yakov Fain's Lesson</description>
+        <description kind="short">Tic-Tac-Toe Game Applet</description>
+    </information>
+    <update check="always"/>
+    <security>
+<all-permissions/>
+</security>
+    <resources>
+        <j2se java-vm-args="-Djava.security.policy=applet.policy" version="1.8+"/>
+        <jar href="applets/JavaLesson11Applet.jar" main="true"/>
+    </resources>
+    <applet-desc height="400" 
+                 main-class="com.yakovfain.lesson11.TicTacToeLauncher" 
+                 name="JavaLesson11Applet" 
+                 width="350">
+    </applet-desc>
+</jnlp>
