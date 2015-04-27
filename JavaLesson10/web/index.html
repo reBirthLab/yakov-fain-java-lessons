@@ -22,11 +22,11 @@ and open the template in the editor.
                     width: 300,
                     height: 200
                 };
-                var parameters = {jnlp_href: "launch.jnlp"};<!-- Applet Parameters -->
+                var parameters = {jnlp_href: "launchApplet.jnlp"};<!-- Applet Parameters -->
                 var version = "1.8";<!-- Required Java Version -->
                 deployJava.runApplet(attributes, parameters, version);
             </script>
-            
+
             <!--
             <applet archive="applets/JavaLesson10Applet.jar" 
                 code="com.yakovfain.lesson10.Calculator.class" 
@@ -35,5 +35,13 @@ and open the template in the editor.
             </applet>
             -->
         </div>
+
+        <div id="applet">
+            <script>
+                var jnlpFile = "launchApp.jnlp";
+                deployJava.createWebStartLaunchButtonEx(jnlpFile);
+            </script>
+        </div>
+
     </body>
 </html>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<jnlp codebase="http://localhost:8080/JavaLesson10/" href="launchApp.jnlp" spec="1.0+">
+    <information>
+        <title>Simple Calculator JWS App</title>
+        <vendor>Anastasiy Tovstik</vendor>
+        <homepage href=""/>
+        <description>This is a simple Calculator Java Web Start App made for Yakov Fain's lesson</description>
+        <description kind="short">Simple Calculator JWS App</description>
+        <offline-allowed/>
+    </information>
+    <update check="background"/>
+    <security>
+        <sandbox/>
+    </security>
+    <resources>
+        <j2se java-vm-args="-Djava.security.policy=applet.policy" version="1.8+"/>
+        <jar href="apps/JavaLesson10JWS.jar" main="true"/>
+    </resources>
+    <application-desc main-class="com.yakovfain.lesson10.jws.Calculator">
+    </application-desc>
+</jnlp>
