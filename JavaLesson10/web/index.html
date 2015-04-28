@@ -13,20 +13,23 @@ and open the template in the editor.
     </head>
     <body>
         <div id="applet">
-            <h1>My Calculator Applet</h1>
-            <script src="http://java.com/js/deployJava.js"></script>
-            <script>
-                var attributes = {
-                    code: "com.yakovfain.lesson10.Calculator",
-                    archive: "applets/JavaLesson10Applet.jar",
-                    width: 300,
-                    height: 200
-                };
-                var parameters = {jnlp_href: "launchApplet.jnlp"};<!-- Applet Parameters -->
-                var version = "1.8";<!-- Required Java Version -->
-                deployJava.runApplet(attributes, parameters, version);
-            </script>
-
+            <div>
+                <h1>My Calculator App</h1>
+                <script src="http://java.com/js/deployJava.js"></script>
+                <script>
+                    var attributes = {
+                        code: "com.yakovfain.lesson10.Calculator",
+                        archive: "applets/JavaLesson10Applet.jar",
+                        width: 300,
+                        height: 200
+                    };
+                    var parameters = {jnlp_href: "launchApplet.jnlp"};
+                    var version = "1.8";
+                    deployJava.runApplet(attributes, parameters, version);
+                </script>
+            </div>
+            
+            <div>
             <!--
             <applet archive="applets/JavaLesson10Applet.jar" 
                 code="com.yakovfain.lesson10.Calculator.class" 
@@ -34,14 +37,14 @@ and open the template in the editor.
                 height="200">   
             </applet>
             -->
+            </div>
+            
+            <div>
+                <script>
+                    var jnlpFile = "launchApp.jnlp";
+                    deployJava.createWebStartLaunchButtonEx(jnlpFile);
+                </script>
+            </div>
         </div>
-
-        <div id="applet">
-            <script>
-                var jnlpFile = "launchApp.jnlp";
-                deployJava.createWebStartLaunchButtonEx(jnlpFile);
-            </script>
-        </div>
-
     </body>
 </html>
