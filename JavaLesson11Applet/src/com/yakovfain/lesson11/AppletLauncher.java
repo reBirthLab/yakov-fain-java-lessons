@@ -14,7 +14,7 @@ import javax.swing.*;
  *
  * @author Anastasiy
  */
-public class TicTacToeLauncher extends JApplet {
+public class AppletLauncher extends JApplet {
 
     /**
      * Initialization method that will be called after the applet is loaded into
@@ -25,16 +25,16 @@ public class TicTacToeLauncher extends JApplet {
         try { 
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
         } catch (ClassNotFoundException ex) {
-            Logger.getLogger(TicTacToeLauncher.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AppletLauncher.class.getName()).log(Level.SEVERE, null, ex);
         } catch (InstantiationException ex) {
-            Logger.getLogger(TicTacToeLauncher.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AppletLauncher.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IllegalAccessException ex) {
-            Logger.getLogger(TicTacToeLauncher.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AppletLauncher.class.getName()).log(Level.SEVERE, null, ex);
         } catch (UnsupportedLookAndFeelException ex) {
-            Logger.getLogger(TicTacToeLauncher.class.getName()).log(Level.SEVERE, null, ex);
+            Logger.getLogger(AppletLauncher.class.getName()).log(Level.SEVERE, null, ex);
         }
         
-        add(new TicTacToeApplet());
+        add(new TicTacToeGUI());
         
     }
 
