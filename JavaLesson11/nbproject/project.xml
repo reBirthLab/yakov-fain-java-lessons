@@ -8,7 +8,7 @@
             <web-module-libraries/>
             <web-module-additional-libraries>
                 <library dirs="200">
-                    <file>${reference.JavaLesson11Applet.jar}</file>
+                    <file>${reference.JavaLesson11App.jar}</file>
                     <path-in-war>/applets/</path-in-war>
                 </library>
             </web-module-additional-libraries>
@@ -21,7 +21,7 @@
         </data>
         <references xmlns="http://www.netbeans.org/ns/ant-project-references/1">
             <reference>
-                <foreign-project>JavaLesson11Applet</foreign-project>
+                <foreign-project>JavaLesson11App</foreign-project>
                 <artifact-type>jar</artifact-type>
                 <script>build.xml</script>
                 <target>jar</target>
