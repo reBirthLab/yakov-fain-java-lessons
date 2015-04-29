@@ -15,6 +15,6 @@
         <j2se java-vm-args="-Djava.security.policy=applet.policy" version="1.8+"/>
         <jar href="applets/JavaLesson11Applet.jar" main="true"/>
     </resources>
-    <applet-desc height="400" main-class="com.yakovfain.lesson11.TicTacToeLauncher" name="Tic-Tac-Toe Game Applet" width="350">
+    <applet-desc height="400" main-class="com.yakovfain.lesson11.AppletLauncher" name="Tic-Tac-Toe Game Applet" width="350">
     </applet-desc>
 </jnlp>
