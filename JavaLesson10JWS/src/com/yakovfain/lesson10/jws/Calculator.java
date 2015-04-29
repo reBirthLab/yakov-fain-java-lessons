@@ -173,6 +173,8 @@ public class Calculator {
 
         // Place window in the center of the screen
         frame.setLocationRelativeTo(null);
+        
+        frame.setResizable(false);
 
         // Display the window
         frame.setVisible(true);
