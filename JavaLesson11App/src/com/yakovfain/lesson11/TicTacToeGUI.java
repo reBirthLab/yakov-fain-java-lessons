@@ -20,15 +20,15 @@ public class TicTacToeGUI extends javax.swing.JPanel {
 
         initComponents();
 
-        buttons[0] = jButton1;
-        buttons[1] = jButton2;
-        buttons[2] = jButton3;
-        buttons[3] = jButton4;
-        buttons[4] = jButton5;
-        buttons[5] = jButton6;
-        buttons[6] = jButton7;
-        buttons[7] = jButton8;
-        buttons[8] = jButton9;
+        buttons[0][0] = jButton1;
+        buttons[0][1] = jButton2;
+        buttons[0][2] = jButton3;
+        buttons[1][0] = jButton4;
+        buttons[1][1] = jButton5;
+        buttons[1][2] = jButton6;
+        buttons[2][0] = jButton7;
+        buttons[2][1] = jButton8;
+        buttons[2][2] = jButton9;
 
         engine = new TicTacToeGameEngine(this);
         setActionListener();
@@ -159,8 +159,10 @@ public class TicTacToeGUI extends javax.swing.JPanel {
     // End of variables declaration//GEN-END:variables
 
     // Custom variables declaration
+    private final String PLAYERX = TicTacToeGameEngine.PLAYERX;
+    private final String PLAYERO = TicTacToeGameEngine.PLAYERO;
     private String playerName = null;
-    JButton[] buttons = new JButton[9];
+    JButton[][] buttons = new JButton[3][3];
     TicTacToeGameEngine engine;
 
     // Methods
@@ -173,12 +175,26 @@ public class TicTacToeGUI extends javax.swing.JPanel {
         message.setText(playerName + ", your turn.");
     }
 
-    String[] getCurrentState() {
-        String[] currentState = new String[buttons.length];
-        for (int i = 0; i < currentState.length; i++) {
-            currentState[i] = buttons[i].getText();
+    String[][] getCurrentState() {
+        String[][] currentState = new String[3][3];
+        for (int i = 0; i < 3; ++i) {
+            for(int j = 0; j < 3; ++j){
+                currentState[i][j] = buttons[i][j].getText();
+            }
         }
         return currentState;
+    }
+    
+    public void placeAMove(Point point, String playerName){
+        
+        switch (playerName) {
+            case PLAYERX:
+                buttons[point.x][point.y].setText("X");
+                break;
+            case PLAYERO:
+                buttons[point.x][point.y].setText("O");
+                break;
+        }
     }
     
     public void setMessage(String message){
@@ -186,16 +202,20 @@ public class TicTacToeGUI extends javax.swing.JPanel {
     }
 
     void reset() {
-        for (JButton button : buttons) {
-            button.setText("");
+        for (JButton[] buttonsRow : buttons) {
+            for (JButton button : buttonsRow){
+                button.setText("");
+            } 
         }
         message.setText("Let's play!");
     }
     
     // Private methods
     private void setActionListener() {
-        for (JButton button : buttons) {
-            button.addMouseListener(engine);
+        for (JButton[] buttonsRow : buttons) {
+            for (JButton button : buttonsRow){
+                button.addMouseListener(engine);
+            } 
         }
     }
 

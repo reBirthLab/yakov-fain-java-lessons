@@ -17,43 +17,77 @@
 package com.yakovfain.lesson11;
 
 import java.awt.event.MouseListener;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Random;
 import javax.swing.JButton;
 
 /**
  *
  * @author Anastasiy
  */
+class Point {
+
+    int x, y;
+
+    Point(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+}
+
 public class TicTacToeGameEngine implements MouseListener {
 
-    private static final String PLAYERX = "Player X";
-    private static final String PLAYERO = "Player O";
-    private static boolean gameOver = false;
-    private String[] currentButtons;
+    public static final String PLAYERX = "Player X";
+    public static final String PLAYERO = "Player O";
     
-
+    private static boolean firstMove = true;
+    private static boolean gameOver = false;
+    private String[][] currentState;
+    private List<Point> avalibleMoves;
+    private Point computerMove;
+    private Random rand = new Random();
+    
     TicTacToeGUI parent;
 
     public TicTacToeGameEngine(TicTacToeGUI parent) {
         this.parent = parent;
     }
 
+    private List<Point> getAvalibleMoves() {
+        avalibleMoves = new ArrayList<>();
+        for (int i = 0; i < 3; ++i) {
+            for (int j = 0; j < 3; ++j) {
+                if (currentState[i][j].equals("")) {
+                    avalibleMoves.add(new Point(i, j));
+                    System.out.println("x=" + i + " y=" + j);
+                }
+            }
+        }
+        return avalibleMoves;
+    }
+    
+    private void minimax (int depth, String player){
+        List<Point> avalibleMooves = getAvalibleMoves();
+    }
+
     private boolean findThreeInRow() {
-        if ((currentButtons[0] == currentButtons[1] && currentButtons[1] == currentButtons[2]
-                && currentButtons[1] != "")||
-                (currentButtons[3] == currentButtons[4] && currentButtons[4] == currentButtons[5]
-                && currentButtons[3] != "")||
-                (currentButtons[6] == currentButtons[7] && currentButtons[7] == currentButtons[8]
-                && currentButtons[6] != "")||
-                (currentButtons[0] == currentButtons[3] && currentButtons[3] == currentButtons[6]
-                && currentButtons[0] != "")||
-                (currentButtons[1] == currentButtons[4] && currentButtons[4] == currentButtons[7]
-                && currentButtons[1] != "")||
-                (currentButtons[2] == currentButtons[5] && currentButtons[5] == currentButtons[8]
-                && currentButtons[2] != "")||
-                (currentButtons[0] == currentButtons[4] && currentButtons[4] == currentButtons[8]
-                && currentButtons[0] != "")||
-                (currentButtons[2] == currentButtons[4] && currentButtons[4] == currentButtons[6]
-                && currentButtons[2] != "")) {
+        if ((currentState[0][0] == currentState[0][1] && currentState[0][1] == currentState[0][2]
+                && currentState[0][0] != "")
+                || (currentState[1][0] == currentState[1][1] && currentState[1][1] == currentState[1][2]
+                && currentState[1][0] != "")
+                || (currentState[2][0] == currentState[2][1] && currentState[2][1] == currentState[2][2]
+                && currentState[2][0] != "")
+                || (currentState[0][0] == currentState[1][0] && currentState[1][0] == currentState[2][0]
+                && currentState[0][0] != "")
+                || (currentState[0][1] == currentState[1][1] && currentState[1][1] == currentState[2][1]
+                && currentState[0][1] != "")
+                || (currentState[0][2] == currentState[1][2] && currentState[1][2] == currentState[2][2]
+                && currentState[0][2] != "")
+                || (currentState[0][0] == currentState[1][1] && currentState[1][1] == currentState[2][2]
+                && currentState[0][0] != "")
+                || (currentState[0][2] == currentState[1][1] && currentState[1][1] == currentState[2][0]
+                && currentState[0][2] != "")) {
             return true;
         } else {
             return false;
@@ -69,9 +103,11 @@ public class TicTacToeGameEngine implements MouseListener {
         }
     }
 
-    public static void resetGameStatus(){
+    public static void resetGameStatus() {
         gameOver = false;
+        firstMove = true;
     }
+
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
         JButton currentButton = (JButton) e.getComponent();
@@ -88,7 +124,14 @@ public class TicTacToeGameEngine implements MouseListener {
             }
         }
 
-        currentButtons = parent.getCurrentState();
+//        if (firstMove && parent.getCurrentPlayerName().equals(PLAYERO)){
+//            Point p = new Point(rand.nextInt(3), rand.nextInt(3));
+//            parent.placeAMove(p, PLAYERO);
+//            firstMove = false;
+//            
+//        }
+        
+        currentState = parent.getCurrentState();
         checkForWinner();
 
     }
