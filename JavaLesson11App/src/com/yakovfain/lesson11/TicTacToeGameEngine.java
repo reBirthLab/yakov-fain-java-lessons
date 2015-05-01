@@ -17,61 +17,27 @@
 package com.yakovfain.lesson11;
 
 import java.awt.event.MouseListener;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Random;
 import javax.swing.JButton;
 
 /**
  *
  * @author Anastasiy
  */
-class Point {
-
-    int x, y;
-
-    Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-}
-
 public class TicTacToeGameEngine implements MouseListener {
 
     public static final String PLAYERX = "Player X";
     public static final String PLAYERO = "Player O";
     
-    private static boolean firstMove = true;
     private static boolean gameOver = false;
     private String[][] currentState;
-    private List<Point> avalibleMoves;
-    private Point computerMove;
-    private Random rand = new Random();
     
     TicTacToeGUI parent;
 
     public TicTacToeGameEngine(TicTacToeGUI parent) {
         this.parent = parent;
     }
-
-    private List<Point> getAvalibleMoves() {
-        avalibleMoves = new ArrayList<>();
-        for (int i = 0; i < 3; ++i) {
-            for (int j = 0; j < 3; ++j) {
-                if (currentState[i][j].equals("")) {
-                    avalibleMoves.add(new Point(i, j));
-                    System.out.println("x=" + i + " y=" + j);
-                }
-            }
-        }
-        return avalibleMoves;
-    }
     
-    private void minimax (int depth, String player){
-        List<Point> avalibleMooves = getAvalibleMoves();
-    }
-
-    private boolean findThreeInRow() {
+private boolean findThreeInRow() {
         if ((currentState[0][0] == currentState[0][1] && currentState[0][1] == currentState[0][2]
                 && currentState[0][0] != "")
                 || (currentState[1][0] == currentState[1][1] && currentState[1][1] == currentState[1][2]
@@ -105,7 +71,6 @@ public class TicTacToeGameEngine implements MouseListener {
 
     public static void resetGameStatus() {
         gameOver = false;
-        firstMove = true;
     }
 
     @Override
@@ -123,17 +88,9 @@ public class TicTacToeGameEngine implements MouseListener {
                     break;
             }
         }
-
-//        if (firstMove && parent.getCurrentPlayerName().equals(PLAYERO)){
-//            Point p = new Point(rand.nextInt(3), rand.nextInt(3));
-//            parent.placeAMove(p, PLAYERO);
-//            firstMove = false;
-//            
-//        }
         
         currentState = parent.getCurrentState();
         checkForWinner();
-
     }
 
     @Override

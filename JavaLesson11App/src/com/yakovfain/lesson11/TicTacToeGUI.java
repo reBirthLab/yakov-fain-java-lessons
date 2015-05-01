@@ -185,18 +185,6 @@ public class TicTacToeGUI extends javax.swing.JPanel {
         return currentState;
     }
     
-    public void placeAMove(Point point, String playerName){
-        
-        switch (playerName) {
-            case PLAYERX:
-                buttons[point.x][point.y].setText("X");
-                break;
-            case PLAYERO:
-                buttons[point.x][point.y].setText("O");
-                break;
-        }
-    }
-    
     public void setMessage(String message){
         this.message.setText(message);
     }
