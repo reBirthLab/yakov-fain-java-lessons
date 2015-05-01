@@ -27,17 +27,17 @@ public class TicTacToeGameEngine implements MouseListener {
 
     public static final String PLAYERX = "Player X";
     public static final String PLAYERO = "Player O";
-    
+
     private static boolean gameOver = false;
     private String[][] currentState;
-    
+
     TicTacToeGUI parent;
 
     public TicTacToeGameEngine(TicTacToeGUI parent) {
         this.parent = parent;
     }
-    
-private boolean findThreeInRow() {
+
+    private boolean findThreeInRow() {
         if ((currentState[0][0] == currentState[0][1] && currentState[0][1] == currentState[0][2]
                 && currentState[0][0] != "")
                 || (currentState[1][0] == currentState[1][1] && currentState[1][1] == currentState[1][2]
@@ -60,11 +60,28 @@ private boolean findThreeInRow() {
         }
     }
 
+    private boolean checkForDraw() {
+        boolean state = false;
+        for (String[] currentStateRow : currentState) {
+            for (String value : currentStateRow) {
+                if (value.equals("")) {
+                    state = false;
+                } else {
+                    state = true;
+                }
+            }
+        }
+        return state;
+    }
+
     private void checkForWinner() {
         if (findThreeInRow()) {
             String winnerName
                     = (parent.getCurrentPlayerName().equals(PLAYERX)) ? PLAYERO : PLAYERX;
             parent.setMessage(winnerName + " won!!! Congratulations!!!");
+            gameOver = true;
+        } else if (checkForDraw()) {
+            parent.setMessage("Draw! No one wins");
             gameOver = true;
         }
     }
@@ -88,7 +105,7 @@ private boolean findThreeInRow() {
                     break;
             }
         }
-        
+
         currentState = parent.getCurrentState();
         checkForWinner();
     }
