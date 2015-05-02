@@ -112,10 +112,9 @@ public class TicTacToeGameEngine implements MouseListener {
                 max = Math.max(currentScore, max);
 
                 /* if (depth == 0) {
-                    System.out.println("Score for position " + (i + 1)
-                            + " = " + currentScore);
-                } */
-                        
+                 System.out.println("Score for position " + (i + 1)
+                 + " = " + currentScore);
+                 } */
                 if (currentScore >= 0 && depth == 0) {
                     computersMove = point;
                 }
@@ -199,12 +198,52 @@ public class TicTacToeGameEngine implements MouseListener {
         return state;
     }
 
+    private void highlightWiningRow() {
+        if (currentState[0][0] == currentState[1][1]
+                && currentState[1][1] == currentState[2][2]
+                && currentState[0][0] != EMPTY) {
+            parent.setButtonColor(0, 0);
+            parent.setButtonColor(1, 1);
+            parent.setButtonColor(2, 2);
+        }
+
+        if (currentState[0][2] == currentState[1][1]
+                && currentState[1][1] == currentState[2][0]
+                && currentState[0][2] != EMPTY) {
+            parent.setButtonColor(0, 2);
+            parent.setButtonColor(1, 1);
+            parent.setButtonColor(2, 0);
+        }
+
+        for (int i = 0; i < 3; ++i) {
+            if (currentState[i][0] == currentState[i][1]
+                    && currentState[i][1] == currentState[i][2]
+                    && currentState[i][0] != EMPTY) {
+                parent.setButtonColor(i, 0);
+                parent.setButtonColor(i, 1);
+                parent.setButtonColor(i, 2);
+            }
+        }
+
+        for (int i = 0; i < 3; ++i) {
+            if (currentState[0][i] == currentState[1][i]
+                    && currentState[1][i] == currentState[2][i]
+                    && currentState[0][i] != EMPTY) {
+                parent.setButtonColor(0, i);
+                parent.setButtonColor(1, i);
+                parent.setButtonColor(2, i);
+            }
+        }
+    }
+
     private void checkForWinner() {
         if (xHasWon()) {
             parent.setMessage(PLAYERX + " won!!! Congratulations!!!");
+            highlightWiningRow();
             gameOver = true;
         } else if (oHasWon()) {
             parent.setMessage(PLAYERO + " won!!! Congratulations!!!");
+            highlightWiningRow();
             gameOver = true;
         } else if (draw()) {
             parent.setMessage("Draw! No one wins. Play again!");

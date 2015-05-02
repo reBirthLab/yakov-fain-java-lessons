@@ -16,7 +16,9 @@
  */
 package com.yakovfain.lesson11;
 
+import java.awt.Color;
 import javax.swing.JButton;
+import javax.swing.border.LineBorder;
 
 /**
  *
@@ -78,7 +80,7 @@ public class TicTacToeGUI extends javax.swing.JPanel {
 
         playBoard.setMinimumSize(new java.awt.Dimension(300, 300));
         playBoard.setPreferredSize(new java.awt.Dimension(300, 300));
-        playBoard.setLayout(new java.awt.GridLayout(3, 3));
+        playBoard.setLayout(new java.awt.GridLayout(3, 3, 3, 3));
 
         jButton1.setFont(new java.awt.Font("Comic Sans MS", 0, 60)); // NOI18N
         playBoard.add(jButton1);
@@ -138,7 +140,7 @@ public class TicTacToeGUI extends javax.swing.JPanel {
             }
         });
 
-        start.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        start.setFont(new java.awt.Font("Tahoma", 1, 12)); // NOI18N
         start.setText("START");
         start.setMinimumSize(new java.awt.Dimension(80, 28));
         start.setPreferredSize(new java.awt.Dimension(80, 28));
@@ -299,11 +301,16 @@ public class TicTacToeGUI extends javax.swing.JPanel {
                 break;
         }
     }
+    
+    void setButtonColor(int x, int y){
+        buttons[x][y].setBorder(new LineBorder(Color.red, 3, true));
+    }
 
     void reset() {
         for (JButton[] buttonsRow : buttons) {
             for (JButton button : buttonsRow){
                 button.setText("");
+                button.setBorder(null);
             } 
         }
         message.setText("Let's play! Choose who makes first move...");
