@@ -42,18 +42,26 @@ public class TicTacToeGameEngine implements MouseListener {
     public static final String PLAYERO = "Player O";
     public static final String EMPTY = "";
 
-    private static String currentPlayerName = null;
-    private static boolean firstMove = true;
     private static boolean gameOver = false;
     private String[][] currentState;
     private List<Point> avalibleMoves;
     private Point computersMove;
-    private Random rand = new Random();
+    private final Random rand = new Random();
 
     TicTacToeGUI parent;
 
     public TicTacToeGameEngine(TicTacToeGUI parent) {
         this.parent = parent;
+    }
+
+    public void computersFirstMove() {
+        Point p = new Point(rand.nextInt(3), rand.nextInt(3));
+        parent.setMove(p, PLAYERO);
+        parent.messagePlayerTurn(PLAYERX);
+    }
+
+    public void resetGameStatus() {
+        gameOver = false;
     }
 
     private List<Point> getAvalibleMoves() {
@@ -69,12 +77,16 @@ public class TicTacToeGameEngine implements MouseListener {
     }
 
     private void placeMove(Point point, String player) {
-        if (player.equals(PLAYERX)) {
-            currentState[point.x][point.y] = "X";
-        } else if (player.equals(PLAYERO)) {
-            currentState[point.x][point.y] = "O";
-        } else if (player.equals(EMPTY)) {
-            currentState[point.x][point.y] = "";
+        switch (player) {
+            case PLAYERX:
+                currentState[point.x][point.y] = "X";
+                break;
+            case PLAYERO:
+                currentState[point.x][point.y] = "O";
+                break;
+            case EMPTY:
+                currentState[point.x][point.y] = "";
+                break;
         }
     }
 
@@ -107,7 +119,7 @@ public class TicTacToeGameEngine implements MouseListener {
                     computersMove = point;
                 }
                 if (i == avalibleMovesMirror.size() - 1
-                        && max < 0
+                        && max < 0 // If variable is "currentScore", AI plays stupid
                         && depth == 0) {
                     computersMove = point;
                 }
@@ -119,7 +131,7 @@ public class TicTacToeGameEngine implements MouseListener {
                 int currentScore = minimax(depth + 1, PLAYERO);
                 min = Math.min(currentScore, min);
 
-                if (currentScore == -1) {
+                if (currentScore == -1) { // If variable is "min", AI plays stupid
                     placeMove(point, EMPTY);
                 }
             }
@@ -185,7 +197,7 @@ public class TicTacToeGameEngine implements MouseListener {
         }
         return state;
     }
-    
+
     private void checkForWinner() {
         if (xHasWon()) {
             parent.setMessage(PLAYERX + " won!!! Congratulations!!!");
@@ -193,44 +205,26 @@ public class TicTacToeGameEngine implements MouseListener {
         } else if (oHasWon()) {
             parent.setMessage(PLAYERO + " won!!! Congratulations!!!");
             gameOver = true;
-        } else if (draw()){
+        } else if (draw()) {
             parent.setMessage("Draw! No one wins. Play again!");
             gameOver = true;
         }
     }
 
-    public static void resetGameStatus() {
-        currentPlayerName = null;
-        gameOver = false;
-        firstMove = true;
-    }
-
     @Override
     public void mouseClicked(java.awt.event.MouseEvent e) {
         JButton currentButton = (JButton) e.getComponent();
-        if ((currentButton.getText()).equals("") && !gameOver) {
-
-            currentButton.setText("X");
-            currentPlayerName = PLAYERO;
-            parent.messageCurrentPlayerTurn(currentPlayerName);
-            currentState = parent.getCurrentState();
-
-            minimax(0, PLAYERO);
-            parent.setMove(computersMove, currentPlayerName);
-            currentPlayerName = PLAYERX;
-            parent.messageCurrentPlayerTurn(currentPlayerName);
-            currentState = parent.getCurrentState();
-            
-            checkForWinner();
-
+        if (parent.isStartButtonPressed()) {
+            if ((currentButton.getText()).equals("") && !gameOver) {
+                currentButton.setText("X");
+                currentState = parent.getCurrentState();
+                minimax(0, PLAYERO);
+                parent.setMove(computersMove, PLAYERO);
+                currentState = parent.getCurrentState();
+                parent.messagePlayerTurn(PLAYERX);
+                checkForWinner();
+            }
         }
-
-//        if (firstMove && parent.getCurrentPlayerName().equals(PLAYERO)){
-//            Point p = new Point(rand.nextInt(3), rand.nextInt(3));
-//            parent.placeAMove(p, PLAYERO);
-//            firstMove = false;
-//            
-//        }
     }
 
     @Override
@@ -245,10 +239,7 @@ public class TicTacToeGameEngine implements MouseListener {
 
     @Override
     public void mouseEntered(java.awt.event.MouseEvent e) {
-        if (currentPlayerName == null) {
-            currentPlayerName = PLAYERX;
-            parent.messageCurrentPlayerTurn(currentPlayerName);
-        }
+
     }
 
     @Override

@@ -43,6 +43,7 @@ public class TicTacToeGUI extends javax.swing.JPanel {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        buttonGroup1 = new javax.swing.ButtonGroup();
         playBoard = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -56,9 +57,12 @@ public class TicTacToeGUI extends javax.swing.JPanel {
         message = new javax.swing.JLabel();
         playAgain = new javax.swing.JButton();
         messageHead = new javax.swing.JLabel();
+        computer = new javax.swing.JRadioButton();
+        human = new javax.swing.JRadioButton();
+        start = new javax.swing.JButton();
 
-        setMinimumSize(new java.awt.Dimension(360, 400));
-        setPreferredSize(new java.awt.Dimension(360, 400));
+        setMinimumSize(new java.awt.Dimension(360, 450));
+        setPreferredSize(new java.awt.Dimension(360, 450));
 
         playBoard.setMinimumSize(new java.awt.Dimension(300, 300));
         playBoard.setPreferredSize(new java.awt.Dimension(300, 300));
@@ -92,7 +96,7 @@ public class TicTacToeGUI extends javax.swing.JPanel {
         playBoard.add(jButton9);
 
         message.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
-        message.setText("Let's play!");
+        message.setText("Let's play! Choose who makes first move...");
 
         playAgain.setText("Play Again");
         playAgain.addActionListener(new java.awt.event.ActionListener() {
@@ -104,20 +108,56 @@ public class TicTacToeGUI extends javax.swing.JPanel {
         messageHead.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
         messageHead.setText(">");
 
+        buttonGroup1.add(computer);
+        computer.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        computer.setText("Computer \"O\"");
+        computer.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                computerActionPerformed(evt);
+            }
+        });
+
+        buttonGroup1.add(human);
+        human.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        human.setText("Human \"X\"");
+        human.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                humanActionPerformed(evt);
+            }
+        });
+
+        start.setFont(new java.awt.Font("Tahoma", 0, 12)); // NOI18N
+        start.setText("START");
+        start.setMinimumSize(new java.awt.Dimension(80, 28));
+        start.setPreferredSize(new java.awt.Dimension(80, 28));
+        start.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                startActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                 .addGap(30, 30, 30)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(messageHead)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(message)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(playAgain))
-                    .addComponent(playBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(message, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(playBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(human)
+                        .addGap(11, 11, 11)
+                        .addComponent(computer)
+                        .addGap(18, 18, Short.MAX_VALUE)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(playAgain, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(start, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addGap(30, 30, 30))
         );
         layout.setVerticalGroup(
@@ -125,23 +165,57 @@ public class TicTacToeGUI extends javax.swing.JPanel {
             .addGroup(layout.createSequentialGroup()
                 .addGap(25, 25, 25)
                 .addComponent(playBoard, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(playAgain)
                     .addComponent(message)
                     .addComponent(messageHead))
-                .addGap(26, 26, 26))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(computer)
+                    .addComponent(start, javax.swing.GroupLayout.PREFERRED_SIZE, 36, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(human))
+                .addGap(11, 11, 11)
+                .addComponent(playAgain)
+                .addGap(15, 15, 15))
         );
     }// </editor-fold>//GEN-END:initComponents
 
     private void playAgainActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_playAgainActionPerformed
         reset();
-        message.setText("Let's play again!");
-        TicTacToeGameEngine.resetGameStatus();
+        engine.resetGameStatus();
     }//GEN-LAST:event_playAgainActionPerformed
+
+    private void humanActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_humanActionPerformed
+        if (!startButtonPressed){
+            chosenPlayer = PLAYERX;
+        }          
+    }//GEN-LAST:event_humanActionPerformed
+
+    private void computerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_computerActionPerformed
+        if (!startButtonPressed){
+            chosenPlayer = PLAYERO;            
+        }
+    }//GEN-LAST:event_computerActionPerformed
+
+    private void startActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_startActionPerformed
+        if (!startButtonPressed && chosenPlayer.equals(PLAYERO)){
+            human.setEnabled(false);
+            computer.setEnabled(false);
+            engine.computersFirstMove();
+            startButtonPressed = true;
+        } else if (!startButtonPressed && chosenPlayer.equals(PLAYERX)){
+            human.setEnabled(false);
+            computer.setEnabled(false);
+            startButtonPressed = true;
+            messagePlayerTurn(chosenPlayer);
+        }
+    }//GEN-LAST:event_startActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.JRadioButton computer;
+    private javax.swing.JRadioButton human;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -155,17 +229,24 @@ public class TicTacToeGUI extends javax.swing.JPanel {
     private javax.swing.JLabel messageHead;
     private javax.swing.JButton playAgain;
     private javax.swing.JPanel playBoard;
+    private javax.swing.JButton start;
     // End of variables declaration//GEN-END:variables
 
     // Custom variables declaration
     private final String PLAYERX = TicTacToeGameEngine.PLAYERX;
     private final String PLAYERO = TicTacToeGameEngine.PLAYERO;
-    JButton[][] buttons = new JButton[3][3];
+    private final JButton[][] buttons = new JButton[3][3];
+    private boolean startButtonPressed = false;
+    private String chosenPlayer;
     TicTacToeGameEngine engine;
 
     // Methods
-    void messageCurrentPlayerTurn(String playerName) {
+    void messagePlayerTurn(String playerName) {
         message.setText(playerName + ", your turn.");
+    }
+    
+    public boolean isStartButtonPressed(){
+        return startButtonPressed;
     }
     
     public void setMessage(String message){
@@ -182,7 +263,7 @@ public class TicTacToeGUI extends javax.swing.JPanel {
         return currentState;
     }
     
-    public void setMove(Point point, String playerName){
+    void setMove(Point point, String playerName){
         
         switch (playerName) {
             case PLAYERX:
@@ -200,7 +281,11 @@ public class TicTacToeGUI extends javax.swing.JPanel {
                 button.setText("");
             } 
         }
-        message.setText("Let's play!");
+        message.setText("Let's play! Choose who makes first move...");
+        
+        human.setEnabled(true);
+        computer.setEnabled(true);
+        startButtonPressed = false;
     }
     
     // Private methods
