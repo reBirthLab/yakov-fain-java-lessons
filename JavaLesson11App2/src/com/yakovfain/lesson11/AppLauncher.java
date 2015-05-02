@@ -16,6 +16,7 @@
  */
 package com.yakovfain.lesson11;
 
+import java.awt.Toolkit;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JFrame;
@@ -32,6 +33,7 @@ public class AppLauncher extends JFrame{
         getContentPane().add(new TicTacToeGUI());
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Tic-Tac-Toe Game");
+        setIconImage(Toolkit.getDefaultToolkit().getImage(getClass().getClassLoader().getResource("icon.png")));
         setResizable(false);
         pack();
         setLocationRelativeTo(null);
@@ -49,7 +51,7 @@ public class AppLauncher extends JFrame{
         // Create and display the form
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AppLauncher().setVisible(true);
+                new AppLauncher().setVisible(true);  
             }
         });
     }
