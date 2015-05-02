@@ -61,14 +61,12 @@ public class TicTacToeGameEngine implements MouseListener {
     }
 
     private boolean checkForDraw() {
-        boolean state = false;
+        boolean state = true;
         for (String[] currentStateRow : currentState) {
             for (String value : currentStateRow) {
                 if (value.equals("")) {
                     state = false;
-                } else {
-                    state = true;
-                }
+                } 
             }
         }
         return state;
