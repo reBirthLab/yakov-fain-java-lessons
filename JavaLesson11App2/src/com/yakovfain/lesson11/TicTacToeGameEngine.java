@@ -111,10 +111,11 @@ public class TicTacToeGameEngine implements MouseListener {
                 int currentScore = minimax(depth + 1, PLAYERX);
                 max = Math.max(currentScore, max);
 
-                if (depth == 0) {
+                /* if (depth == 0) {
                     System.out.println("Score for position " + (i + 1)
                             + " = " + currentScore);
-                }
+                } */
+                        
                 if (currentScore >= 0 && depth == 0) {
                     computersMove = point;
                 }
