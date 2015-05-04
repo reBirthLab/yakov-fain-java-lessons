@@ -12,7 +12,7 @@ import javax.swing.*;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class AppletLauncher extends JApplet {
 

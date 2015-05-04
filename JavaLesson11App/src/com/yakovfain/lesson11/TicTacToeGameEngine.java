@@ -21,7 +21,7 @@ import javax.swing.JButton;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class TicTacToeGameEngine implements MouseListener {
 
