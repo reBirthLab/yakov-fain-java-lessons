@@ -12,7 +12,7 @@ import java.util.logging.Logger;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class Calculator {
 
