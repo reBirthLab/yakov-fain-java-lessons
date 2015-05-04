@@ -7,7 +7,7 @@ package com.yakovfain.lesson7;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public abstract class Person {
     

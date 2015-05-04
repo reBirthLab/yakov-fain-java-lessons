@@ -10,7 +10,7 @@ import com.yakovfain.lesson7.*;
 
 /**
  *
- * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com> Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class TestPayIncrease2 {
 

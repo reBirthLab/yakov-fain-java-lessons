@@ -7,7 +7,7 @@ package com.yakovfain.lesson7.tryit;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class Contractor implements Payable {
     

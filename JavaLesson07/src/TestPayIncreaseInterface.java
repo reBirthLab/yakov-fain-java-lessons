@@ -9,7 +9,7 @@ import com.yakovfain.lesson7.tryit.*;
 
 /**
  *
- * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com> Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class TestPayIncreaseInterface {
     public static void main(String[] args) {

@@ -7,7 +7,7 @@ package com.yakovfain.lesson7;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class Employee extends Person {
     

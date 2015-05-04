@@ -7,7 +7,7 @@ package com.yakovfain.lesson7.tryit;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public interface Payable {
     final int INCREASE_CAP = 25;
