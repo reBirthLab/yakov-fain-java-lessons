@@ -7,7 +7,7 @@ package com.yakovfain.lesson6;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class ForeignContractor extends Person {
     
