@@ -10,7 +10,7 @@ import javax.swing.*;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class CalculatorUI {
     JPanel windowContent;
