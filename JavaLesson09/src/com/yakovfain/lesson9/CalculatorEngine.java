@@ -11,7 +11,7 @@ import javax.swing.JButton;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class CalculatorEngine implements ActionListener {
 

@@ -10,7 +10,7 @@ import java.awt.*;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class Calculator {
 
