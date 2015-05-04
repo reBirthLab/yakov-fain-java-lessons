@@ -26,15 +26,6 @@ import javax.swing.JButton;
  *
  * @author Anastasiy
  */
-class Point {
-
-    int x, y;
-
-    Point(int x, int y) {
-        this.x = x;
-        this.y = y;
-    }
-}
 
 public class TicTacToeGameEngine implements MouseListener {
 
@@ -95,10 +86,10 @@ public class TicTacToeGameEngine implements MouseListener {
         if (avalibleMovesMirror.isEmpty()) {
             return 0;
         }
-        if (oHasWon()) {
+        if (playerHasWon("O")) {
             return 1;
         }
-        if (xHasWon()) {
+        if (playerHasWon("X")) {
             return -1;
         }
 
@@ -140,46 +131,23 @@ public class TicTacToeGameEngine implements MouseListener {
         return player.equals(PLAYERO) ? max : min;
     }
 
-    private boolean xHasWon() {
-        if ((currentState[0][0] == currentState[1][1]
-                && currentState[1][1] == currentState[2][2]
-                && currentState[0][0].equals("X"))
-                || (currentState[0][2] == currentState[1][1]
-                && currentState[1][1] == currentState[2][0]
-                && currentState[0][2].equals("X"))) {
+    private boolean playerHasWon(String playerSymbol) {
+        if ((currentState[0][0].equals(currentState[1][1])
+                && currentState[1][1].equals(currentState[2][2])
+                && currentState[0][0].equals(playerSymbol))
+                || (currentState[0][2].equals(currentState[1][1])
+                && currentState[1][1].equals(currentState[2][0])
+                && currentState[0][2].equals(playerSymbol))) {
             return true;
         }
 
         for (int i = 0; i < 3; ++i) {
-            if ((currentState[i][0] == currentState[i][1]
-                    && currentState[i][1] == currentState[i][2]
-                    && currentState[i][0].equals("X"))
-                    || (currentState[0][i] == currentState[1][i]
-                    && currentState[1][i] == currentState[2][i]
-                    && currentState[0][i].equals("X"))) {
-                return true;
-            }
-        }
-        return false;
-    }
-
-    private boolean oHasWon() {
-        if ((currentState[0][0] == currentState[1][1]
-                && currentState[1][1] == currentState[2][2]
-                && currentState[0][0].equals("O"))
-                || (currentState[0][2] == currentState[1][1]
-                && currentState[1][1] == currentState[2][0]
-                && currentState[0][2].equals("O"))) {
-            return true;
-        }
-
-        for (int i = 0; i < 3; ++i) {
-            if ((currentState[i][0] == currentState[i][1]
-                    && currentState[i][1] == currentState[i][2]
-                    && currentState[i][0].equals("O"))
-                    || (currentState[0][i] == currentState[1][i]
-                    && currentState[1][i] == currentState[2][i]
-                    && currentState[0][i].equals("O"))) {
+            if ((currentState[i][0].equals(currentState[i][1])
+                    && currentState[i][1].equals(currentState[i][2])
+                    && currentState[i][0].equals(playerSymbol))
+                    || (currentState[0][i].equals(currentState[1][i])
+                    && currentState[1][i].equals(currentState[2][i])
+                    && currentState[0][i].equals(playerSymbol))) {
                 return true;
             }
         }
@@ -199,16 +167,16 @@ public class TicTacToeGameEngine implements MouseListener {
     }
 
     private void highlightWiningRow() {
-        if (currentState[0][0] == currentState[1][1]
-                && currentState[1][1] == currentState[2][2]
+        if (currentState[0][0].equals(currentState[1][1])
+                && currentState[1][1].equals(currentState[2][2])
                 && currentState[0][0] != EMPTY) {
             parent.setButtonColor(0, 0);
             parent.setButtonColor(1, 1);
             parent.setButtonColor(2, 2);
         }
 
-        if (currentState[0][2] == currentState[1][1]
-                && currentState[1][1] == currentState[2][0]
+        if (currentState[0][2].equals(currentState[1][1])
+                && currentState[1][1].equals(currentState[2][0])
                 && currentState[0][2] != EMPTY) {
             parent.setButtonColor(0, 2);
             parent.setButtonColor(1, 1);
@@ -216,8 +184,8 @@ public class TicTacToeGameEngine implements MouseListener {
         }
 
         for (int i = 0; i < 3; ++i) {
-            if (currentState[i][0] == currentState[i][1]
-                    && currentState[i][1] == currentState[i][2]
+            if (currentState[i][0].equals(currentState[i][1])
+                    && currentState[i][1].equals(currentState[i][2])
                     && currentState[i][0] != EMPTY) {
                 parent.setButtonColor(i, 0);
                 parent.setButtonColor(i, 1);
@@ -226,8 +194,8 @@ public class TicTacToeGameEngine implements MouseListener {
         }
 
         for (int i = 0; i < 3; ++i) {
-            if (currentState[0][i] == currentState[1][i]
-                    && currentState[1][i] == currentState[2][i]
+            if (currentState[0][i].equals(currentState[1][i])
+                    && currentState[1][i].equals(currentState[2][i])
                     && currentState[0][i] != EMPTY) {
                 parent.setButtonColor(0, i);
                 parent.setButtonColor(1, i);
@@ -237,11 +205,11 @@ public class TicTacToeGameEngine implements MouseListener {
     }
 
     private void checkForWinner() {
-        if (xHasWon()) {
+        if (playerHasWon("X")) {
             parent.setMessage(PLAYERX + " won!!! Congratulations!!!");
             highlightWiningRow();
             gameOver = true;
-        } else if (oHasWon()) {
+        } else if (playerHasWon("O")) {
             parent.setMessage(PLAYERO + " won!!! Congratulations!!!");
             highlightWiningRow();
             gameOver = true;
