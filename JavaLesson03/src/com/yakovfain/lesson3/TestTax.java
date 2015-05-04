@@ -7,7 +7,7 @@ package com.yakovfain.lesson3;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class TestTax {
 
