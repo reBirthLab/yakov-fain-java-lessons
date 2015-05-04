@@ -25,7 +25,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class AppLauncher extends JFrame{
     

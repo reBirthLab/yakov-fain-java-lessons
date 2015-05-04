@@ -18,7 +18,7 @@ package com.yakovfain.lesson11;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class Point {
 

@@ -22,7 +22,7 @@ import javax.swing.border.LineBorder;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class TicTacToeGUI extends javax.swing.JPanel {
 
