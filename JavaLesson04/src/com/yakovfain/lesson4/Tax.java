@@ -7,7 +7,7 @@ package com.yakovfain.lesson4;
 
 /**
  *
- * @author Anastasiy
+ * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public class Tax {
     double grossIncome; // class member variables
