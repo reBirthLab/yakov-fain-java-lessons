@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+Copyright (C) 2015 Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
+
+This program is free software: you can redistribute it and/or modify
+it under the terms of the GNU General Public License as published by
+the Free Software Foundation, either version 3 of the License, or
+(at your option) any later version.
+
+This program is distributed in the hope that it will be useful,
+but WITHOUT ANY WARRANTY; without even the implied warranty of
+MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+GNU General Public License for more details.
+
+You should have received a copy of the GNU General Public License
+along with this program.  If not, see <http://www.gnu.org/licenses/>.
+-->
+
+<?import javafx.scene.effect.*?>
+<?import javafx.scene.paint.*?>
+<?import javafx.scene.shape.*?>
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<Pane fx:id="pane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" onMouseClicked="#handleMouseClickedAction" onMouseMoved="#handleMouseMoveAction" prefHeight="610.0" prefWidth="1096.0" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yakovfain.lesson12.PingPongGreenTableController">
+   <children>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#5fa150" height="610.0" stroke="BLACK" strokeType="INSIDE" width="1096.0" />
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="604.0" layoutX="3.0" layoutY="3.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="8.0" width="1090.0" />
+      <Line endX="1085.0" layoutY="305.0" startX="11.0" stroke="WHITE" strokeWidth="4.0" />
+      <Line endY="599.0" layoutX="548.0" startY="11.0" stroke="WHITE" strokeWidth="8.0" />
+      <Rectangle fx:id="playersRacket" arcHeight="5.0" arcWidth="5.0" fill="#f21616" height="120.0" layoutX="20.0" layoutY="-60.0" onMouseMoved="#handleMouseMoveAction" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" y="60.0">
+         <effect>
+            <DropShadow color="#0000004d" offsetX="-5.0" offsetY="5.0" spread="0.5" />
+         </effect>
+      </Rectangle>
+      <Rectangle arcHeight="5.0" arcWidth="5.0" fill="#18c8f0" height="120.0" layoutX="1066.0" layoutY="305.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" y="-60.0">
+         <effect>
+            <DropShadow color="#0000004b" offsetX="-5.0" offsetY="5.0" spread="0.5" />
+         </effect>
+      </Rectangle>
+      <Circle layoutX="60.0" layoutY="305.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE">
+         <fill>
+            <RadialGradient centerX="0.4666666666666667" centerY="0.5" focusAngle="-45.0" focusDistance="0.20930232558139528" radius="1.0">
+               <stops>
+                  <Stop color="WHITE" />
+                  <Stop color="#a1a1a1" offset="1.0" />
+               </stops>
+            </RadialGradient>
+         </fill>
+         <effect>
+            <DropShadow color="#0000004c" offsetX="-5.0" offsetY="5.0" spread="0.4" />
+         </effect>
+      </Circle>
+   </children>
+</Pane>
