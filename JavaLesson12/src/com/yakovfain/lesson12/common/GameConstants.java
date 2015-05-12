@@ -21,9 +21,11 @@ package com.yakovfain.lesson12.common;
  * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
 public interface GameConstants {
-    int TABLE_WIDTH = 610;
+    int TABLE_WIDTH = 1096;
+    int TABLE_HEIGHT = 610;
     int TABLE_TOP = 60;
     int TABLE_BOTTOM = 550;
     int KID_RACKET_Y_START = 305;
-    int RACKET_INCREMENT = 2;
+    int KID_RACKET_X = 1066;
+    int RACKET_INCREMENT = 8;
 }
