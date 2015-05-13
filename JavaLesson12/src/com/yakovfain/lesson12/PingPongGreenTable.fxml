@@ -31,23 +31,23 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 <BorderPane onKeyPressed="#handleKeyPressedAction" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yakovfain.lesson12.PingPongGreenTableController">
    <center>
-      <Pane focusTraversable="true" onMouseMoved="#handleMouseMoveAction" prefHeight="610.0" prefWidth="1096.0" BorderPane.alignment="CENTER">
+      <Pane fx:id="table" focusTraversable="true" onMouseMoved="#handleMouseMoveAction" prefHeight="610.0" prefWidth="1096.0" BorderPane.alignment="CENTER">
          <children>
             <Rectangle fill="#5fa150" height="610.0" stroke="BLACK" strokeType="INSIDE" strokeWidth="0.0" width="1096.0" />
             <Rectangle arcHeight="5.0" arcWidth="5.0" fill="TRANSPARENT" height="604.0" layoutX="3.0" layoutY="3.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="8.0" width="1090.0" />
             <Line endX="1085.0" layoutY="305.0" startX="11.0" stroke="WHITE" strokeWidth="4.0" />
             <Line endY="599.0" layoutX="548.0" startY="11.0" stroke="WHITE" strokeWidth="8.0" />
-            <Rectangle fx:id="computerRacket" arcHeight="5.0" arcWidth="5.0" fill="#f21616" height="120.0" layoutX="20.0" layoutY="-60.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" y="305.0">
+            <Rectangle fx:id="computerRacket" arcHeight="5.0" arcWidth="5.0" fill="#f21616" height="100.0" layoutX="20.0" layoutY="-50.0" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" y="305.0">
                <effect>
                   <DropShadow color="#0000004d" offsetX="-5.0" offsetY="5.0" spread="0.5" />
                </effect>
             </Rectangle>
-            <Rectangle fx:id="kidRacket" arcHeight="5.0" arcWidth="5.0" fill="#18c8f0" height="120.0" layoutX="1066.0" layoutY="-60.0" onMouseMoved="#handleMouseMoveAction" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" y="305.0">
+            <Rectangle fx:id="kidRacket" arcHeight="5.0" arcWidth="5.0" fill="#18c8f0" height="100.0" layoutX="1066.0" layoutY="-50.0" onMouseMoved="#handleMouseMoveAction" stroke="TRANSPARENT" strokeType="INSIDE" width="10.0" y="305.0">
                <effect>
                   <DropShadow color="#0000004b" offsetX="-5.0" offsetY="5.0" spread="0.5" />
                </effect>
             </Rectangle>
-            <Circle fx:id="ball" centerX="-10.0" centerY="-10.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE">
+            <Circle fx:id="ball" centerX="-10.0" centerY="-10.0" radius="10.0" stroke="TRANSPARENT" strokeType="INSIDE" visible="false">
                <fill>
                   <RadialGradient centerX="0.5" centerY="0.5" focusAngle="-45.0" focusDistance="0.2" radius="1.0">
                      <stops>
@@ -71,7 +71,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
                   <Font size="14.0" />
                </font>
             </Label>
-            <Label fx:id="message" layoutX="25.0" layoutY="5.0">
+            <Label fx:id="message" layoutX="20.0" layoutY="5.0" text="Press N for a new game, S to serve or Q to quit">
                <font>
                   <Font size="14.0" />
                </font></Label>
