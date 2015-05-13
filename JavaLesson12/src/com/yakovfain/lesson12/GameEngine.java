@@ -38,7 +38,7 @@ import javafx.scene.shape.Circle;
  *
  * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
-public class PingPongGreenTableController implements Initializable, Runnable {
+public class GameEngine implements Initializable, Runnable {
 
     private int kidScore;
     private int computerScore;
@@ -66,12 +66,16 @@ public class PingPongGreenTableController implements Initializable, Runnable {
     @FXML
     private Pane table;
 
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
+    public GameEngine() {
         worker = new Thread(this);
         worker.setDaemon(true); // Experimental
         worker.setName("My Thread"); // Experimental
         worker.start();
+    }
+
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
+        
     }
 
     @Override
@@ -127,10 +131,10 @@ public class PingPongGreenTableController implements Initializable, Runnable {
                     if ((ballX + GameConstants.BALL_RADIUS)
                             >= GameConstants.KID_RACKET_X && canBounce) {
                         if (ballY + GameConstants.BALL_RADIUS
-                                > kidRacketY + 20) {
+                                > kidRacketY + 10) {
                             verticalSlide = -3;
                         } else if (ballY - GameConstants.BALL_RADIUS
-                                < kidRacketY - 20) {
+                                < kidRacketY - 10) {
                             verticalSlide = 3;
                         } else {
                             verticalSlide = 0;
@@ -151,9 +155,9 @@ public class PingPongGreenTableController implements Initializable, Runnable {
 
                 // 4. Slow down the loop
                 try {
-                    Thread.sleep(4);
+                    Thread.sleep(3);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(PingPongGreenTableController.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(GameEngine.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

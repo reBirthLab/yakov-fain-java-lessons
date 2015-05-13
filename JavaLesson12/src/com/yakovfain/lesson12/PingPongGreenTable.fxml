@@ -29,7 +29,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane onKeyPressed="#handleKeyPressedAction" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yakovfain.lesson12.PingPongGreenTableController">
+<BorderPane onKeyPressed="#handleKeyPressedAction" xmlns="http://javafx.com/javafx/8.0.40" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.yakovfain.lesson12.GameEngine">
    <center>
       <Pane fx:id="table" focusTraversable="true" onMouseMoved="#handleMouseMoveAction" prefHeight="610.0" prefWidth="1096.0" BorderPane.alignment="CENTER">
          <children>
