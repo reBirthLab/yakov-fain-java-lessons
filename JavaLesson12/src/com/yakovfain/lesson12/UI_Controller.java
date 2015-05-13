@@ -38,7 +38,7 @@ import javafx.scene.shape.Circle;
  *
  * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
-public class GameEngine implements Initializable, Runnable {
+public class UI_Controller implements Initializable, Runnable {
 
     private int kidScore;
     private int computerScore;
@@ -66,16 +66,12 @@ public class GameEngine implements Initializable, Runnable {
     @FXML
     private Pane table;
 
-    public GameEngine() {
+    @Override
+    public void initialize(URL url, ResourceBundle rb) {
         worker = new Thread(this);
         worker.setDaemon(true); // Experimental
         worker.setName("My Thread"); // Experimental
         worker.start();
-    }
-
-    @Override
-    public void initialize(URL url, ResourceBundle rb) {
-        
     }
 
     @Override
@@ -131,10 +127,10 @@ public class GameEngine implements Initializable, Runnable {
                     if ((ballX + GameConstants.BALL_RADIUS)
                             >= GameConstants.KID_RACKET_X && canBounce) {
                         if (ballY + GameConstants.BALL_RADIUS
-                                > kidRacketY + 10) {
+                                > kidRacketY + 15) {
                             verticalSlide = -3;
                         } else if (ballY - GameConstants.BALL_RADIUS
-                                < kidRacketY - 10) {
+                                < kidRacketY - 15) {
                             verticalSlide = 3;
                         } else {
                             verticalSlide = 0;
@@ -157,7 +153,7 @@ public class GameEngine implements Initializable, Runnable {
                 try {
                     Thread.sleep(3);
                 } catch (InterruptedException ex) {
-                    Logger.getLogger(GameEngine.class.getName()).log(Level.SEVERE, null, ex);
+                    Logger.getLogger(UI_Controller.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
         }

@@ -39,8 +39,6 @@ public class PingPongGame extends Application {
         stage.sizeToScene();
         stage.show();
         stage.setOnCloseRequest(e -> System.exit(0));
-        
-        new GameEngine();
     }
 
     /**
