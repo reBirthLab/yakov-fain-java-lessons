@@ -25,7 +25,6 @@ import javafx.scene.shape.Rectangle;
 import com.yakovfain.lesson12.common.GameConstants;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -68,7 +67,7 @@ public class PingPongGreenTableController implements Initializable, Runnable {
     private Pane table;
 
     @Override
-    public void initialize(URL url, ResourceBundle rb) { 
+    public void initialize(URL url, ResourceBundle rb) {
         worker = new Thread(this);
         worker.setDaemon(true); // Experimental
         worker.setName("My Thread"); // Experimental
@@ -79,104 +78,102 @@ public class PingPongGreenTableController implements Initializable, Runnable {
     public void run() {
         boolean canBounce = false;
 
-            while (worker.isAlive()) {
-                // If ball is moving
-                if (ballServed) {
+        while (worker.isAlive()) {
+            // If ball is moving
+            if (ballServed) {
 
-                    // 1. If ball is moving to the left
-                    if (movingLeft && ballX > GameConstants.BALL_MIN_X) {
-                        // Check if ball hits computer's racket
-                        canBounce = (ballY > (computerRacketY - GameConstants.RACKET_HALF_LENGTH)
-                                && ballY < (computerRacketY + GameConstants.RACKET_HALF_LENGTH));
+                // 1. If ball is moving to the left
+                if (movingLeft && ballX > GameConstants.BALL_MIN_X) {
+                    // Check if ball hits computer's racket
+                    canBounce = (ballY > (computerRacketY - GameConstants.RACKET_HALF_LENGTH)
+                            && ballY < (computerRacketY + GameConstants.RACKET_HALF_LENGTH));
 
-                        ballX -= GameConstants.BALL_INCREMENT;
+                    ballX -= GameConstants.BALL_INCREMENT;
 
-                        if (ballY <= GameConstants.TABLE_TOP - 40) {
-                            verticalSlide = -1;
-                        } else if (ballY >= (GameConstants.TABLE_BOTTOM + 40)) {
-                            verticalSlide = 1;
-                        }
-
-                        ballY -= verticalSlide;
-
-                        setBallPosition(ballX, ballY);
-
-                        if ((ballX - GameConstants.BALL_RADIUS) 
-                                <= GameConstants.COMPUTER_RACKET_X && canBounce) {
-                            movingLeft = false;
-                        }
+                    if (ballY <= GameConstants.TABLE_TOP - 40) {
+                        verticalSlide = -1;
+                    } else if (ballY >= (GameConstants.TABLE_BOTTOM + 40)) {
+                        verticalSlide = 1;
                     }
 
-                    // 2. If ball is moving to the right
-                    if (!movingLeft && ballX <= GameConstants.BALL_MAX_X) {
-                        // Check if ball hits kid's racket
-                        canBounce = (ballY > (kidRacketY - GameConstants.RACKET_HALF_LENGTH)
-                                && ballY < (kidRacketY + GameConstants.RACKET_HALF_LENGTH));
+                    ballY -= verticalSlide;
 
-                        ballX += GameConstants.BALL_INCREMENT;
+                    setBallPosition(ballX, ballY);
 
-                        if (ballY <= GameConstants.TABLE_TOP - 40) {
-                            verticalSlide = -1;
-                        } else if (ballY >= GameConstants.TABLE_BOTTOM + 40) {
-                            verticalSlide = 1;
+                    if ((ballX - GameConstants.BALL_RADIUS)
+                            <= GameConstants.COMPUTER_RACKET_X && canBounce) {
+                        movingLeft = false;
+                    }
+                }
+
+                // 2. If ball is moving to the right
+                if (!movingLeft && ballX <= GameConstants.BALL_MAX_X) {
+                    // Check if ball hits kid's racket
+                    canBounce = (ballY > (kidRacketY - GameConstants.RACKET_HALF_LENGTH)
+                            && ballY < (kidRacketY + GameConstants.RACKET_HALF_LENGTH));
+
+                    ballX += GameConstants.BALL_INCREMENT;
+
+                    if (ballY <= GameConstants.TABLE_TOP - 40) {
+                        verticalSlide = -1;
+                    } else if (ballY >= GameConstants.TABLE_BOTTOM + 40) {
+                        verticalSlide = 1;
+                    }
+
+                    ballY -= verticalSlide;
+
+                    setBallPosition(ballX, ballY);
+
+                    if ((ballX + GameConstants.BALL_RADIUS)
+                            >= GameConstants.KID_RACKET_X && canBounce) {
+                        if (ballY + GameConstants.BALL_RADIUS
+                                > kidRacketY + 20) {
+                            verticalSlide = -3;
+                        } else if (ballY - GameConstants.BALL_RADIUS
+                                < kidRacketY - 20) {
+                            verticalSlide = 3;
+                        } else {
+                            verticalSlide = 0;
                         }
-
-                        ballY -= verticalSlide;
-
-                        setBallPosition(ballX, ballY);
-
-                        if ((ballX + GameConstants.BALL_RADIUS) 
-                                >= GameConstants.KID_RACKET_X && canBounce) {
-                            if (ballY + GameConstants.BALL_RADIUS
-                                    > kidRacketY + 20) {
-                                verticalSlide = -3;
-                            } else if (ballY - GameConstants.BALL_RADIUS
-                                    < kidRacketY - 20) {
-                                verticalSlide = 3;
-                            } else {
-                                verticalSlide = 0;
-                            }
-                            movingLeft = true;
-                        }
+                        movingLeft = true;
                     }
-                    
-                    // 3. Move computer's racket
-                    if (computerRacketY < ballY && computerRacketY 
-                            < GameConstants.TABLE_BOTTOM){
-                        computerRacketY += GameConstants.RACKET_INCREMENT;
-                    } else if (computerRacketY > GameConstants.TABLE_TOP){
-                        computerRacketY -= GameConstants.RACKET_INCREMENT;
-                    }
-                    
-                    computerRacket.setY(computerRacketY);
-                    
-                    // 4. Slow down the loop
-                    try {
-                        Thread.sleep(4);
-                    } catch (InterruptedException ex) {
-                        Logger.getLogger(PingPongGreenTableController.class.getName()).log(Level.SEVERE, null, ex);
-                    }
+                }
 
+                // 3. Move computer's racket
+                if (computerRacketY < ballY && computerRacketY
+                        < GameConstants.TABLE_BOTTOM) {
+                    computerRacketY += GameConstants.RACKET_INCREMENT;
+                } else if (computerRacketY > GameConstants.TABLE_TOP) {
+                    computerRacketY -= GameConstants.RACKET_INCREMENT;
+                }
+
+                computerRacket.setY(computerRacketY);
+
+                // 4. Slow down the loop
+                try {
+                    Thread.sleep(4);
+                } catch (InterruptedException ex) {
+                    Logger.getLogger(PingPongGreenTableController.class.getName()).log(Level.SEVERE, null, ex);
                 }
             }
-        
+        }
     }
 
     // Start a new game
     private void startNewGame() {
         kidScore = 0;
         computerScore = 0;
-        
+
         ballX = GameConstants.KID_RACKET_X - 30;
         ball.setVisible(true);
-        
+
         table.setCursor(Cursor.NONE);
         message.setText("Current score: Computer: 0  Kid: 0");
-        
+
         newGameFlag = true;
-        
+
         movingLeft = true; // Temporary 
-       ballServed = false; // Temporary 
+        ballServed = false; // Temporary 
     }
 
     // End the game
