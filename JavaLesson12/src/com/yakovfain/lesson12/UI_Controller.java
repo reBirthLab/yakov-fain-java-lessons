@@ -23,8 +23,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.shape.Rectangle;
 import com.yakovfain.lesson12.common.GameConstants;
-import java.util.logging.Level;
-import java.util.logging.Logger;
 import javafx.event.ActionEvent;
 import javafx.scene.Cursor;
 import javafx.scene.control.Label;
@@ -38,20 +36,19 @@ import javafx.scene.shape.Circle;
  *
  * @author Anastasiy Tovstik <anastasiy.tovstik@gmail.com>
  */
-public class UI_Controller implements Initializable, Runnable {
+public class UI_Controller implements Initializable {
 
     private int kidScore;
     private int computerScore;
     private double kidRacketY = GameConstants.RACKET_Y_START;
-    private double computerRacketY = GameConstants.RACKET_Y_START;
+    private double computerRacketY;
     private double ballX;
     private double ballY;
-    private int verticalSlide;
     private boolean newGameFlag = false;
     private boolean ballServed = false;
-    private boolean movingLeft = true;
-
-    Thread worker;
+    private PingPongGameEngine engine;
+    private Thread worker;
+    private boolean threadRunning = false;
 
     @FXML
     private Label coordinates;
@@ -68,112 +65,29 @@ public class UI_Controller implements Initializable, Runnable {
 
     @Override
     public void initialize(URL url, ResourceBundle rb) {
-        worker = new Thread(this);
-        worker.setDaemon(true); // Experimental
-        worker.setName("My Thread"); // Experimental
-        worker.start();
-    }
 
-    @Override
-    public void run() {
-        boolean canBounce = false;
-
-        while (worker.isAlive()) {
-            // If ball is moving
-            if (ballServed) {
-
-                // 1. If ball is moving to the left
-                if (movingLeft && ballX > GameConstants.BALL_MIN_X) {
-                    // Check if ball hits computer's racket
-                    canBounce = (ballY > (computerRacketY - GameConstants.RACKET_HALF_LENGTH)
-                            && ballY < (computerRacketY + GameConstants.RACKET_HALF_LENGTH));
-
-                    ballX -= GameConstants.BALL_INCREMENT;
-
-                    if (ballY <= GameConstants.TABLE_TOP - 40) {
-                        verticalSlide = -1;
-                    } else if (ballY >= (GameConstants.TABLE_BOTTOM + 40)) {
-                        verticalSlide = 1;
-                    }
-
-                    ballY -= verticalSlide;
-
-                    setBallPosition(ballX, ballY);
-
-                    if ((ballX - GameConstants.BALL_RADIUS)
-                            <= GameConstants.COMPUTER_RACKET_X && canBounce) {
-                        movingLeft = false;
-                    }
-                }
-
-                // 2. If ball is moving to the right
-                if (!movingLeft && ballX <= GameConstants.BALL_MAX_X) {
-                    // Check if ball hits kid's racket
-                    canBounce = (ballY > (kidRacketY - GameConstants.RACKET_HALF_LENGTH)
-                            && ballY < (kidRacketY + GameConstants.RACKET_HALF_LENGTH));
-
-                    ballX += GameConstants.BALL_INCREMENT;
-
-                    if (ballY <= GameConstants.TABLE_TOP - 40) {
-                        verticalSlide = -1;
-                    } else if (ballY >= GameConstants.TABLE_BOTTOM + 40) {
-                        verticalSlide = 1;
-                    }
-
-                    ballY -= verticalSlide;
-
-                    setBallPosition(ballX, ballY);
-
-                    if ((ballX + GameConstants.BALL_RADIUS)
-                            >= GameConstants.KID_RACKET_X && canBounce) {
-                        if (ballY + GameConstants.BALL_RADIUS
-                                > kidRacketY + 15) {
-                            verticalSlide = -3;
-                        } else if (ballY - GameConstants.BALL_RADIUS
-                                < kidRacketY - 15) {
-                            verticalSlide = 3;
-                        } else {
-                            verticalSlide = 0;
-                        }
-                        movingLeft = true;
-                    }
-                }
-
-                // 3. Move computer's racket
-                if (computerRacketY < ballY && computerRacketY
-                        < GameConstants.TABLE_BOTTOM) {
-                    computerRacketY += GameConstants.RACKET_INCREMENT;
-                } else if (computerRacketY > GameConstants.TABLE_TOP) {
-                    computerRacketY -= GameConstants.RACKET_INCREMENT;
-                }
-
-                computerRacket.setY(computerRacketY);
-
-                // 4. Slow down the loop
-                try {
-                    Thread.sleep(3);
-                } catch (InterruptedException ex) {
-                    Logger.getLogger(UI_Controller.class.getName()).log(Level.SEVERE, null, ex);
-                }
-            }
-        }
     }
 
     // Start a new game
     private void startNewGame() {
+        if (threadRunning) {
+            engine.cancel();
+            worker = null;
+        }
+
         kidScore = 0;
         computerScore = 0;
 
-        ballX = GameConstants.KID_RACKET_X - 30;
+        computerRacketY = GameConstants.RACKET_Y_START;
+        ballX = GameConstants.KID_RACKET_X - 30;    
         ball.setVisible(true);
 
         table.setCursor(Cursor.NONE);
         message.setText("Current score: Computer: 0  Kid: 0");
 
         newGameFlag = true;
+        ballServed = false;
 
-        movingLeft = true; // Temporary 
-        ballServed = false; // Temporary 
     }
 
     // End the game
@@ -185,20 +99,47 @@ public class UI_Controller implements Initializable, Runnable {
         if (newGameFlag) {
             ballServed = true;
             ballY = kidRacketY;
+        }
+        if (!threadRunning) {
+            //Start thread
+            engine = new PingPongGameEngine(this);
+            worker = new Thread(engine);
+            worker.setDaemon(true);
+            worker.start();
 
-            if (ballY > GameConstants.TABLE_HEIGHT / 2) {
-                verticalSlide = -1;
-            } else {
-                verticalSlide = 1;
-            }
+            threadRunning = true;
+        } else {
+            //Kill running thread
+            engine.cancel();
+            worker = null;
 
-            setBallPosition(ballX, ballY);
+            //Start a new thread
+            engine = new PingPongGameEngine(this);
+            worker = new Thread(engine);
+            worker.setDaemon(true);
+            worker.start();
         }
     }
 
-    private void setBallPosition(double x, double y) {
+    public void setBallPosition(double x, double y) {
         ball.setCenterX(x);
         ball.setCenterY(y);
+    }
+
+    public void setComputerRacketY(double y) {
+        computerRacket.setY(y);
+    }
+
+    public double getBallX() {
+        return ballX;
+    }
+
+    public double getBallY() {
+        return ballY;
+    }
+
+    public double getRacketY() {
+        return kidRacketY;
     }
 
     @FXML
@@ -215,6 +156,7 @@ public class UI_Controller implements Initializable, Runnable {
                 if (!ballServed) {
                     ballY = mouseY;
                     setBallPosition(ballX, ballY);
+                    setComputerRacketY(computerRacketY);
                 }
             }
         }
